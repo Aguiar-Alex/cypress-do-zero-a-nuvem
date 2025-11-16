@@ -6,8 +6,8 @@ beforeEach(() => {
 describe('Central de Atendimnto ao Cliente TAT', () => {
   it('verifica o título e sub título da aplicação', () => {
 
-    cy.get('#title').should('be.visible');
-    cy.get('#subtitle').should('be.visible')
+    cy.contains('h1', 'CAC TAT').should('be.visible');
+    cy.contains('p', 'Forneça o máximo de informações, por favor').should('be.visible')
   })
 
   it('preenche os campos obrigatórios e envia o formulário', () => {
@@ -17,7 +17,7 @@ describe('Central de Atendimnto ao Cliente TAT', () => {
     cy.get('#email').type('antonio.alex.aguiar@gmail.com', {delay: 0});
     cy.get('#phone').type('11961814395', {delay: 0});
     cy.get('#open-text-area').type('Olá , tudo bem ?', {delay: 0});
-    cy.get('.button').click();
+    cy.contains('button', 'Enviar').click();
 
     cy.contains('Mensagem enviada com sucesso.').should('be.visible');
   })
@@ -25,7 +25,7 @@ describe('Central de Atendimnto ao Cliente TAT', () => {
   it('exibe mensagem de erro ao submeter o formulário com um email com formatação inválida', () => {
     
     cy.get('#email').type('antonio.alex.aguiar2gmail.com');
-    cy.get('.button').click();
+    cy.contains('button', 'Enviar').click();
 
     cy.contains('Valide os campos obrigatórios!').should('be.visible')
   })
@@ -40,7 +40,7 @@ describe('Central de Atendimnto ao Cliente TAT', () => {
    
     cy.get('#phone-checkbox').check();
     cy.get('#phone').should('not.have.value');
-    cy.get('.button').click();
+    cy.contains('button', 'Enviar').click();
 
     cy.contains('Valide os campos obrigatórios!').should('be.visible')
   })
