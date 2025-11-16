@@ -72,9 +72,12 @@ describe('Central de Atendimnto ao Cliente TAT', () => {
 
   it('marca o tipo de atendimento "Feedback', () => {
 
-    cy.get('input[type="radio"').eq(2).check().should('have.value', 'feedback')
-  })
+    cy.get('input[type="radio"')
+    .eq(2)
+    .check()
+    .should('have.value', 'feedback');
 
+  })
 
   it('marca cada tipo de atendimento', () => {
 
@@ -82,8 +85,25 @@ describe('Central de Atendimnto ao Cliente TAT', () => {
 
       cy.wrap($el)
       .check()
-      .should('be.checked')
-      
+      .should('be.checked');
+
+    });
+  })
+
+  it.only('marca ambos checkboxes, depois desmarca o último', () => {
+
+    cy.get('input[type="checkbox"').each(($el) => {
+
+      cy.wrap($el)
+      .check()
+      .should('be.checked');
+
     })
+
+    cy.get('input[type="checkbox"').
+    last()
+    .uncheck()
+    .should('not.be.checked');
+
   })
 })
