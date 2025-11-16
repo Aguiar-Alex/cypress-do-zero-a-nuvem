@@ -90,7 +90,7 @@ describe('Central de Atendimnto ao Cliente TAT', () => {
     });
   })
 
-  it.only('marca ambos checkboxes, depois desmarca o último', () => {
+  it('marca ambos checkboxes, depois desmarca o último', () => {
 
     cy.get('input[type="checkbox"').each(($el) => {
 
